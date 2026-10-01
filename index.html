@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой первый сайт</title>
+    <title>🔔 Автоматизация школьных звонков</title>
+    <meta name="description" content="Выпускная квалификационная работа: автоматизация школьных звонков на Arduino с веб-интерфейсом управления.">
     <style>
         * {
             margin: 0;
@@ -11,108 +12,298 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f4f6f8;
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --accent: #06b6d4;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
         }
 
+        body {
+            font-family: 'Segoe UI', Roboto, Tahoma, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Шапка */
         header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
             color: #fff;
-            padding: 60px 20px;
+            padding: 80px 20px 60px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15), transparent 60%);
+        }
+
+        header .inner {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
         }
 
-        header p {
+        header .subtitle {
             font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 24px;
+            opacity: 0.95;
             margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        .card h2 {
-            color: #667eea;
-            margin-bottom: 10px;
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(4px);
         }
 
-        .btn {
-            display: inline-block;
-            background: #667eea;
+        /* Контент */
+        main {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+            border: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        section p {
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Списки */
+        ul.checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.checklist li {
+            position: relative;
+            padding: 10px 0 10px 34px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        ul.checklist li:last-child {
+            border-bottom: none;
+        }
+
+        ul.checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 22px;
+            height: 22px;
+            background: var(--primary);
             color: #fff;
-            padding: 12px 28px;
-            border-radius: 8px;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Стек */
+        .stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .stack-item {
+            background: #f1f5f9;
+            border-left: 4px solid var(--accent);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .stack-item h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .stack-item p {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        /* Контакты */
+        .contacts a {
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            margin-top: 20px;
-            transition: background 0.2s;
         }
 
-        .btn:hover {
-            background: #5568d3;
+        .contacts a:hover {
+            text-decoration: underline;
         }
 
+        /* Футер */
         footer {
             text-align: center;
-            padding: 30px 20px;
-            color: #888;
+            padding: 30px 20px 50px;
+            color: var(--muted);
             font-size: 0.9rem;
+        }
+
+        /* Адаптив */
+        @media (max-width: 600px) {
+            header {
+                padding: 60px 16px 40px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 22px;
+            }
+
+            section h2 {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Привет, мир! 👋</h1>
-        <p>Мой маленький сайт на GitHub Pages</p>
+        <div class="inner">
+            <h1>🔔 Автоматизация школьных звонков</h1>
+            <p class="subtitle">Выпускная квалификационная работа · 2027</p>
+            <div class="tags">
+                <span class="tag">Arduino</span>
+                <span class="tag">Web</span>
+                <span class="tag">IoT</span>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="card">
-            <h2>О сайте</h2>
-            <p>Это простой одностраничный сайт, созданный на чистом HTML и CSS.
-               Его можно опубликовать на GitHub Pages буквально за пару минут.</p>
-        </div>
+    <main>
 
-        <div class="card">
-            <h2>Что здесь есть</h2>
-            <p>Адаптивная вёрстка, градиентная шапка, карточки с тенями и кнопка.
-               Всё уместилось в один файл без внешних библиотек.</p>
-            <a href="https://github.com" class="btn" target="_blank">Перейти на GitHub</a>
-        </div>
+        <section>
+            <h2>📌 О проекте</h2>
+            <p>Проект посвящён автоматизации системы школьных звонков на базе микроконтроллера
+               Arduino с интеграцией в существующую советскую инфраструктуру, управляемую
+               обычным выключателем света.</p>
+            <p>Система позволяет удалённо управлять расписанием и запуском звонков через
+               веб-интерфейс, сохраняя возможность ручного управления через штатный выключатель.</p>
+        </section>
 
-        <div class="card">
-            <h2>Как опубликовать</h2>
-            <p>Загрузите этот файл как <code>index.html</code> в репозиторий,
-               включите Pages в настройках — и сайт уже в интернете.</p>
-        </div>
-    </div>
+        <section>
+            <h2>🎯 Что я хочу получить</h2>
+            <ul class="checklist">
+                <li>Готовая система на Arduino, работающая в реальных условиях школы</li>
+                <li>Совместимость со старой советской системой звонков с выключателем света</li>
+                <li>Удалённое управление через веб-интерфейс</li>
+                <li>Гибкий режим: автоматический + ручной</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🛠 Что нужно сделать</h2>
+            <ul class="checklist">
+                <li>Разработать схему подключения Arduino</li>
+                <li>Написать код программы</li>
+                <li>Составить описание проекта</li>
+                <li>Реализовать веб-интерфейс управления</li>
+                <li>Внедрить в образовательном учреждении г. Ижевска</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🧰 Стек технологий</h2>
+            <div class="stack">
+                <div class="stack-item">
+                    <h3>Микроконтроллер</h3>
+                    <p>Arduino Uno / Nano / ESP32</p>
+                </div>
+                <div class="stack-item">
+                    <h3>Связь</h3>
+                    <p>Wi-Fi / Ethernet (ESP8266, W5100)</p>
+                </div>
+                <div class="stack-item">
+                    <h3>Веб-интерфейс</h3>
+                    <p>HTML · CSS · JavaScript</p>
+                </div>
+                <div class="stack-item">
+                    <h3>Управление нагрузкой</h3>
+                    <p>Реле / оптрон / симистор</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>📍 Место внедрения</h2>
+            <p>Одно из образовательных учреждений г. Ижевска, Удмуртская Республика.</p>
+        </section>
+
+        <section class="contacts">
+            <h2>📞 Контакты</h2>
+            <p>Связаться с автором проекта можно по следующим каналам:</p>
+            <p>
+                <!-- Замените ссылки на свои -->
+                <a href="https://github.com/busarginit">GitHub</a> ·
+                <a href="mailto:example@example.com">Email</a> ·
+                <a href="https://t.me/username">Telegram</a>
+            </p>
+        </section>
+
+    </main>
 
     <footer>
-        © 2026 Мой сайт. Сделано с ❤️
+        © 2027 · Выпускная квалификационная работа · Ижевск
     </footer>
 
 </body>
