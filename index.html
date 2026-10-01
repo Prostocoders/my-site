@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой первый сайт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Привет, мир! 👋</h1>
+        <p>Мой маленький сайт на GitHub Pages</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>О сайте</h2>
+            <p>Это простой одностраничный сайт, созданный на чистом HTML и CSS.
+               Его можно опубликовать на GitHub Pages буквально за пару минут.</p>
+        </div>
+
+        <div class="card">
+            <h2>Что здесь есть</h2>
+            <p>Адаптивная вёрстка, градиентная шапка, карточки с тенями и кнопка.
+               Всё уместилось в один файл без внешних библиотек.</p>
+            <a href="https://github.com" class="btn" target="_blank">Перейти на GitHub</a>
+        </div>
+
+        <div class="card">
+            <h2>Как опубликовать</h2>
+            <p>Загрузите этот файл как <code>index.html</code> в репозиторий,
+               включите Pages в настройках — и сайт уже в интернете.</p>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Мой сайт. Сделано с ❤️
+    </footer>
+
+</body>
+</html>
